@@ -9,4 +9,5 @@
     <!-- Content Description -->
     <string name="image_main_content">Emoji Image</string>
     <string name="image_list_content">Emoji Image</string>
+    <string name="image_avatar_content">Avatar Image</string>
 </resources>
