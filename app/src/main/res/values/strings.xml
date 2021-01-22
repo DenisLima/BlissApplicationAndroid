@@ -5,6 +5,7 @@
     <string name="button_text_list">Emoji List</string>
     <string name="button_text_list_avatar">Avatar List</string>
     <string name="button_text_googler">Google Repos</string>
+    <string name="button_text_retryr">Retry</string>
 
     <!-- Content Description -->
     <string name="image_main_content">Emoji Image</string>
