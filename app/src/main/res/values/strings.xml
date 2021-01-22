@@ -6,6 +6,9 @@
     <string name="button_text_list_avatar">Avatar List</string>
     <string name="button_text_googler">Google Repos</string>
     <string name="button_text_retryr">Retry</string>
+    <string name="label_google_repo_activity">Google Repositories</string>
+    <string name="label_list_avatar_activity">Avatars List</string>
+    <string name="label_bliss_activity">Bliss Activity Challenge</string>
 
     <!-- Content Description -->
     <string name="image_main_content">Emoji Image</string>

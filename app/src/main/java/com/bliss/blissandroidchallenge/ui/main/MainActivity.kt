@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = getString(R.string.label_bliss_activity)
+
         viewModel.checkCacheData()
         initComponents()
         prepareObservers()
