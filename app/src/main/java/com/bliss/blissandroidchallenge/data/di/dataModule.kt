@@ -9,6 +9,9 @@ import com.bliss.blissandroidchallenge.data.main.datasource.local.DatabaseHelper
 import com.bliss.blissandroidchallenge.data.main.model.EmojiList
 import com.bliss.blissandroidchallenge.domain.main.MainRepository
 import com.bliss.blissandroidchallenge.data.main.datasource.remote.MainRemoteSource
+import com.bliss.blissandroidchallenge.data.repolist.RepoListRepositoryImpl
+import com.bliss.blissandroidchallenge.data.repolist.remote.RepoListRemoteSource
+import com.bliss.blissandroidchallenge.domain.repolist.RepoListRepository
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -73,6 +76,16 @@ val dataModule = module {
 
     single<MainRepository> {
         MainRepositoryImpl(get(), get())
+    }
+
+    //Repo List
+
+    single<RepoListRepository> {
+        RepoListRepositoryImpl(get())
+    }
+
+    single {
+        get<Retrofit>().create(RepoListRemoteSource::class.java)
     }
 
 }

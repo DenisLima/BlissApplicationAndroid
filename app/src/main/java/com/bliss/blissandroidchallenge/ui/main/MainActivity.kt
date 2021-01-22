@@ -7,6 +7,7 @@ import androidx.lifecycle.observe
 import com.bliss.blissandroidchallenge.R
 import com.bliss.blissandroidchallenge.ui.avatarlist.AvatarListActivity
 import com.bliss.blissandroidchallenge.ui.list.ListActivity
+import com.bliss.blissandroidchallenge.ui.reposlist.RepoListActivity
 import com.bliss.blissandroidchallenge.utils.Status
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,8 +41,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnAvatarList.setOnClickListener {
-            val it = Intent(this, AvatarListActivity::class.java)
-            startActivity(it)
+            val intent = Intent(this, AvatarListActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnGoogleRepos.setOnClickListener {
+            val intent = Intent(this, RepoListActivity::class.java)
+            startActivity(intent)
         }
 
     }

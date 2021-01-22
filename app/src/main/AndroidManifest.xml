@@ -23,6 +23,7 @@
 
         <activity android:name=".ui.list.ListActivity"/>
         <activity android:name=".ui.avatarlist.AvatarListActivity"/>
+        <activity android:name=".ui.reposlist.RepoListActivity"/>
     </application>
 
 </manifest>
