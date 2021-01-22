@@ -21,6 +21,11 @@ class ListActivity : AppCompatActivity(), OnClickEmojiListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = getString(R.string.label_list_avatar_activity)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         viewModel.fetchEmojisFromDb()
         prepareObservers()
         initComponents()
@@ -64,5 +69,10 @@ class ListActivity : AppCompatActivity(), OnClickEmojiListener {
 
     override fun onClickImage(emoji: EmojiEntity, position: Int) {
         emojiListAdapter.removeItem(emoji)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

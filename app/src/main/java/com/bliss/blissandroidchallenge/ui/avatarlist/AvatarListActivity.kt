@@ -21,6 +21,11 @@ class AvatarListActivity : AppCompatActivity(), OnClickAvatarListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_avatar_list)
 
+        val actionbar = supportActionBar
+        actionbar!!.title = getString(R.string.label_list_avatar_activity)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         viewModel.fetchAvatarFromDb()
         prepareObservers()
     }
@@ -57,5 +62,10 @@ class AvatarListActivity : AppCompatActivity(), OnClickAvatarListener {
 
     override fun onClickImage(avatar: UserAvatarEntity) {
         viewModel.deleteAvatar(avatar)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
