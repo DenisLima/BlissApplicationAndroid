@@ -46,7 +46,8 @@ dependencies {
     def room = '2.2.5'
     def koin_version = '2.0.1'
     def interceptor = '4.9.0'
-    def paging = '2.1.2'
+    def paging_version = "3.0.0-alpha12"
+
 
     //General
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -56,9 +57,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
     implementation "androidx.recyclerview:recyclerview:$recyclerView"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation "androidx.paging:paging-runtime-ktx:$paging"
-    implementation "androidx.paging:paging-rxjava2-ktx:$paging"
-
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide"
