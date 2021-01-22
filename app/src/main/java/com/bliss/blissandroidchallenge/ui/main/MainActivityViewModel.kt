@@ -18,11 +18,28 @@ class MainActivityViewModel(
     private val emojisList = MutableLiveData<Resource<List<EmojiEntity>>>()
     fun getEmojisList(): LiveData<Resource<List<EmojiEntity>>> = emojisList
 
-    private val mustShowErrorLv = MutableLiveData<String>()
-    fun isMustShowError(): LiveData<String> = mustShowErrorLv
-
     private val randomUrlEmoji = MutableLiveData<String>()
     fun getRandomPosition(): LiveData<String> = randomUrlEmoji
+
+    private val buttonStatusLv = MutableLiveData<Boolean>()
+    fun getButtonStatus(): LiveData<Boolean> = buttonStatusLv
+
+    fun checkCacheData() {
+
+        viewModelScope.launch {
+            try {
+
+                val emojisFromDb = mainUseCases.getEmojisFromDb()
+                if (emojisFromDb.isEmpty()) {
+                    buttonStatusLv.postValue(false)
+                } else {
+                    buttonStatusLv.postValue(true)
+                }
+            } catch (e: Exception) {
+                buttonStatusLv.postValue(false)
+            }
+        }
+    }
 
     fun fetchEmojis() {
 
@@ -55,7 +72,6 @@ class MainActivityViewModel(
 
             } catch (e: Exception){
                 emojisList.postValue(Resource.error("Something Went Wrong", null))
-                mustShowErrorLv.postValue(e.message)
                 Log.e("EROO", e.message.toString())
             }
         }
