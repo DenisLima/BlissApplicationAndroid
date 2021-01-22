@@ -1,7 +1,8 @@
-package com.bliss.blissandroidchallenge
+package com.bliss.blissandroidchallenge.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bliss.blissandroidchallenge.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

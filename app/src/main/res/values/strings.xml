@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BlissAndroidChallenge</string>
+
+    <string name="button_text">Random Emoji</string>
+    <string name="button_text_list">Emoji List</string>
+    <string name="button_text_list_avatar">Avatar List</string>
+    <string name="button_text_googler">Google Repos</string>
 </resources>
