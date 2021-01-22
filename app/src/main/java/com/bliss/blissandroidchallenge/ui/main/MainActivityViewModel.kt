@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.EmojiEntity
+import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.UserAvatarEntity
 import com.bliss.blissandroidchallenge.domain.main.MainUseCases
 import com.bliss.blissandroidchallenge.utils.Resource
 import kotlinx.coroutines.launch
@@ -23,6 +24,9 @@ class MainActivityViewModel(
 
     private val buttonStatusLv = MutableLiveData<Boolean>()
     fun getButtonStatus(): LiveData<Boolean> = buttonStatusLv
+
+    private val userAvatarLv = MutableLiveData<Resource<UserAvatarEntity>>()
+    fun getUserAvatarLv(): LiveData<Resource<UserAvatarEntity>> = userAvatarLv
 
     fun checkCacheData() {
 
@@ -73,6 +77,33 @@ class MainActivityViewModel(
             } catch (e: Exception){
                 emojisList.postValue(Resource.error("Something Went Wrong", null))
                 Log.e("EROO", e.message.toString())
+            }
+        }
+    }
+
+    fun getUserAvatar(username: String) {
+
+        userAvatarLv.postValue(Resource.loading(null))
+        viewModelScope.launch {
+            try {
+
+                val userAvatarFromDb = mainUseCases.getUserAvatarFromDb(username)
+                if (userAvatarFromDb == null){
+                    val userAvatarFromApi = mainUseCases.getUserAvatar(username)
+                    val userAvatar = UserAvatarEntity(
+                        id = userAvatarFromApi.id,
+                        login = userAvatarFromApi.login,
+                        avatarUrl = userAvatarFromApi.avatarUrl
+                    )
+
+                    mainUseCases.insertUserAvatar(userAvatar)
+                    userAvatarLv.postValue(Resource.success(userAvatar))
+                } else {
+                    userAvatarLv.postValue(Resource.success(userAvatarFromDb))
+                }
+
+            }catch (e: Exception) {
+                userAvatarLv.postValue(Resource.error(e.message.toString(), null))
             }
         }
     }

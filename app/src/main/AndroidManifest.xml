@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".ui.list.ListActivity"/>
+        <activity android:name=".ui.avatarlist.AvatarListActivity"/>
     </application>
 
 </manifest>
