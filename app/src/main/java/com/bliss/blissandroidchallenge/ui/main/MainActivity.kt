@@ -3,6 +3,8 @@ package com.bliss.blissandroidchallenge.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.lifecycle.observe
 import com.bliss.blissandroidchallenge.R
 import com.bliss.blissandroidchallenge.ui.avatarlist.AvatarListActivity
@@ -52,6 +54,21 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RepoListActivity::class.java)
             startActivity(intent)
         }
+
+        editSearch.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btnSearch.isEnabled = s.toString().trim().isNotEmpty()
+            }
+
+        })
 
     }
 

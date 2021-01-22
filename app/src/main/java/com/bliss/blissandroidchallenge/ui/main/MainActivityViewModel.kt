@@ -16,9 +16,6 @@ class MainActivityViewModel(
     private val mainUseCases: MainUseCases
 ): ViewModel() {
 
-    private val emojisList = MutableLiveData<Resource<List<EmojiEntity>>>()
-    fun getEmojisList(): LiveData<Resource<List<EmojiEntity>>> = emojisList
-
     private val randomUrlEmoji = MutableLiveData<String>()
     fun getRandomPosition(): LiveData<String> = randomUrlEmoji
 
@@ -66,17 +63,14 @@ class MainActivityViewModel(
                     }
 
                     mainUseCases.insertAll(emojisToInsertInDB)
-                    emojisList.postValue(Resource.success(emojisToInsertInDB))
                     selectRandomImage(emojisToInsertInDB)
 
                 } else {
-                    emojisList.postValue(Resource.success(emojisFromDb))
                     selectRandomImage(emojisFromDb)
                 }
 
             } catch (e: Exception){
-                emojisList.postValue(Resource.error("Something Went Wrong", null))
-                Log.e("EROO", e.message.toString())
+                Log.e("ERROR", e.message.toString())
             }
         }
     }
