@@ -1,6 +1,6 @@
 package com.bliss.blissandroidchallenge.data.main.model
 
-data class Emoji (
+data class DEmoji (
     var emojiName: String,
     var emojiUrl: String
 )

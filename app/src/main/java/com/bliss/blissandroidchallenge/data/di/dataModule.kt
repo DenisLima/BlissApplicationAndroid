@@ -6,9 +6,11 @@ import com.bliss.blissandroidchallenge.data.main.MainRepositoryImpl
 import com.bliss.blissandroidchallenge.data.main.datasource.local.AppDatabase
 import com.bliss.blissandroidchallenge.data.main.datasource.local.DatabaseHelper
 import com.bliss.blissandroidchallenge.data.main.datasource.local.DatabaseHelperImpl
-import com.bliss.blissandroidchallenge.data.main.model.EmojiList
+import com.bliss.blissandroidchallenge.data.main.model.DEmojiList
 import com.bliss.blissandroidchallenge.domain.main.MainRepository
 import com.bliss.blissandroidchallenge.data.main.datasource.remote.MainRemoteSource
+import com.bliss.blissandroidchallenge.data.main.mapper.MainMapper
+import com.bliss.blissandroidchallenge.data.main.mapper.UserAvatarMapper
 import com.bliss.blissandroidchallenge.data.repolist.RepoListRepositoryImpl
 import com.bliss.blissandroidchallenge.data.repolist.remote.RepoListRemoteSource
 import com.bliss.blissandroidchallenge.domain.repolist.RepoListRepository
@@ -34,7 +36,7 @@ val dataModule = module {
 
     single {
         val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(EmojiList::class.java, EmojiConverterFactory())
+        gsonBuilder.registerTypeAdapter(DEmojiList::class.java, EmojiConverterFactory())
 
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
@@ -75,7 +77,7 @@ val dataModule = module {
     }
 
     single<MainRepository> {
-        MainRepositoryImpl(get(), get())
+        MainRepositoryImpl(get(), get(), get(), get())
     }
 
     //Repo List
@@ -86,6 +88,14 @@ val dataModule = module {
 
     single {
         get<Retrofit>().create(RepoListRemoteSource::class.java)
+    }
+
+    single {
+        MainMapper()
+    }
+
+    single {
+        UserAvatarMapper()
     }
 
 }
