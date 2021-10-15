@@ -2,8 +2,10 @@ package com.bliss.blissandroidchallenge.domain.main
 
 import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.EmojiEntity
 import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.UserAvatarEntity
-import com.bliss.blissandroidchallenge.data.main.model.EmojiList
-import com.bliss.blissandroidchallenge.data.main.model.UserAvatar
+import com.bliss.blissandroidchallenge.data.main.model.DEmojiList
+import com.bliss.blissandroidchallenge.data.main.model.DUserAvatar
+import com.bliss.blissandroidchallenge.domain.model.EmojiList
+import com.bliss.blissandroidchallenge.domain.model.UserAvatar
 
 interface MainUseCases {
 

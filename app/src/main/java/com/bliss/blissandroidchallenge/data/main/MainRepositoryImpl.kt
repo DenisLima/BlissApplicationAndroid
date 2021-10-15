@@ -5,16 +5,22 @@ import com.bliss.blissandroidchallenge.data.main.datasource.local.DatabaseHelper
 import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.EmojiEntity
 import com.bliss.blissandroidchallenge.data.main.datasource.local.entity.UserAvatarEntity
 import com.bliss.blissandroidchallenge.data.main.datasource.remote.MainRemoteSource
-import com.bliss.blissandroidchallenge.data.main.model.EmojiList
-import com.bliss.blissandroidchallenge.data.main.model.UserAvatar
+import com.bliss.blissandroidchallenge.data.main.mapper.MainMapper
+import com.bliss.blissandroidchallenge.data.main.mapper.UserAvatarMapper
+import com.bliss.blissandroidchallenge.data.main.model.DEmojiList
+import com.bliss.blissandroidchallenge.data.main.model.DUserAvatar
+import com.bliss.blissandroidchallenge.domain.model.EmojiList
+import com.bliss.blissandroidchallenge.domain.model.UserAvatar
 
 class MainRepositoryImpl(
     private val mainRemoteSource: MainRemoteSource,
-    private val databaseHelper: DatabaseHelper
+    private val databaseHelper: DatabaseHelper,
+    private val mainMapper: MainMapper,
+    private val userAvatarMapper: UserAvatarMapper
 ): MainRepository {
 
     override suspend fun getEmojis(): EmojiList {
-        return mainRemoteSource.getEmojis()
+        return mainMapper.transform(mainRemoteSource.getEmojis())
     }
 
     override suspend fun getEmojisFromDb(): List<EmojiEntity> {
@@ -26,7 +32,7 @@ class MainRepositoryImpl(
     }
 
     override suspend fun getUserAvatar(username: String): UserAvatar {
-        return mainRemoteSource.getUserAvatar(username)
+        return userAvatarMapper.transform(mainRemoteSource.getUserAvatar(username))
     }
 
     override suspend fun getUserAvatarFromDb(username: String): UserAvatarEntity {

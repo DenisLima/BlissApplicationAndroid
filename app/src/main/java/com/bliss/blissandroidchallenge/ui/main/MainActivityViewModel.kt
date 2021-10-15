@@ -1,6 +1,7 @@
 package com.bliss.blissandroidchallenge.ui.main
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -102,7 +103,8 @@ class MainActivityViewModel(
         }
     }
 
-    private fun selectRandomImage(emojiList: List<EmojiEntity>) {
+    @VisibleForTesting
+    fun selectRandomImage(emojiList: List<EmojiEntity>) {
         val range = (START_RANGE..emojiList.size)
         val emojiRandom = emojiList[range.random()].urlEmoji
         randomUrlEmoji.postValue(emojiRandom)
